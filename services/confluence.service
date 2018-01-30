@@ -1,0 +1,15 @@
+[Unit]
+Description=Atlassian Confluence Server Service
+After=syslog.target network.target postgresql.service
+
+[Service]
+Type=forking
+User=atlassian
+Environment=JAVA_HOME=/opt/jdk/current
+PIDFile=/opt/atlassian/confluence/current/work/catalina.pid
+UMask=0027
+ExecStart=/opt/atlassian/confluence/current/bin/start-confluence.sh
+ExecStop=/opt/atlassian/confluence/current/bin/stop-confluence.sh
+
+[Install]
+WantedBy=multi-user.target

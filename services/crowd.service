@@ -1,0 +1,15 @@
+[Unit]
+Description=Atlassian Crowd Server Service
+After=syslog.target network.target postgresql.service
+
+[Service]
+Type=forking
+User=atlassian
+EnvironmentFile=/etc/environment
+PIDFile=/opt/atlassian/crowd/current/apache-tomcat/work/catalina.pid
+UMask=0027
+ExecStart=/opt/atlassian/crowd/current/start_crowd.sh
+ExecStop=/opt/atlassian/crowd/current/stop_crowd.sh
+
+[Install]
+WantedBy=multi-user.target

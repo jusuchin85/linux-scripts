@@ -1,0 +1,15 @@
+[Unit]
+Description=Atlassian JIRA Server Service
+After=syslog.target network.target postgresql.service
+
+[Service]
+Type=forking
+User=atlassian
+Environment=JAVA_HOME=/opt/jdk/current
+PIDFile=/opt/atlassian/jira/current/work/catalina.pid
+UMask=0027
+ExecStart=/opt/atlassian/jira/current/bin/start-jira.sh
+ExecStop=/opt/atlassian/jira/current/bin/stop-jira.sh
+
+[Install]
+WantedBy=multi-user.target
